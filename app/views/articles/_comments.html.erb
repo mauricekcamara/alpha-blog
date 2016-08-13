@@ -1,0 +1,20 @@
+<div class="center article-reviews">
+  <% @comments.each do |comment| %>
+    <div class="row">
+      <div class="rated" data-score="<%= comment.rating %>">
+        <hr>
+        <p>
+          <%= comment.user.username %> <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small>
+          <% if logged_in? && current_user.admin? %>
+          <small><%= link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe,
+                    article_comment_path(comment.article, comment), method: :delete,
+                    data: { confirm: 'Are you sure?' } %></small>
+          <% end %>
+        </p>
+        <p><%= "Rating: #{comment.rating}/5" %></p>
+        <p><%= comment.body %></p>
+      </div><!--rated-->
+    </div><!--row-->
+  <% end %>
+  <%= will_paginate @comments %>
+</div><!--article reviews-->
