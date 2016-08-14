@@ -1,0 +1,9 @@
+<div class="center">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <p>Thank you. We have received your message and will respond as soon as possible.</p>
+    </div><!-- / panel-body -->
+  </div><!-- / panel -->
+  <%= image_tag("thank-you.jpeg", class:"img-responsive custom-form") %>
+  <%= link_to 'Back to home', root_path, class:"btn btn-danger" %>
+</div><!--center-->
