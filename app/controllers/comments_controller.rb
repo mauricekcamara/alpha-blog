@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :require_admin, only: [:destroy]
 
   def create
     @article = Article.find(params[:article_id])
@@ -18,14 +19,22 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @article = Article.find(params[:article_id])
-    @comment.destroy
-    redirect_to article_path(@article)
-    
+      if @comment.destroy
+        flash[:success] = "Comment was successfully destroyed"
+        redirect_to article_path(@article)
+      end
   end
 
   private
     def comment_params
       params.require(:comment).permit(:user_id, :body, :rating)
+    end
+  
+    def require_admin
+      if logged_in? and !current_user.admin?
+        flash[:danger] = "Only admin users can perform that action"
+        redirect_to root_path
+      end
     end
 
 end
