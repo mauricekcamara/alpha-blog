@@ -18,6 +18,9 @@
   <h4 class="center description"><strong>Description:</strong></h4>
   <hr>
   <%= simple_format(@article.description) %>
+  <% if @article.categories.any? %>
+    <p>Categories: <%= render @article.categories %></p>
+  <% end %>
   <p>Average Rating: <div class="rated" data-score="<%= @article.average_rating %>"></div></p>
   <div class="article-actions">
     <% if logged_in? && (current_user == @article.user || current_user.admin?) %>
