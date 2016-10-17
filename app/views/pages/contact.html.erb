@@ -4,11 +4,11 @@
 <%= form_tag("/pages/thank_you", class:"custom-form") do %>
   <div class="form-group">
     <%= label_tag :name %>
-    <%= text_field_tag :name, nil, class: "form-control", placeholder: "Enter Name" %>
+    <%= text_field_tag :name, nil, class: "form-control", placeholder: "Enter Name", required: true %>
   </div><!--form group-->
   <div class="form-group">
     <%= label_tag :email, "Email Address" %>
-    <%= text_field_tag :email, nil, class: "form-control", placeholder: "Enter Email" %>
+    <%= text_field_tag :email, nil, class: "form-control", placeholder: "Enter Email", required: true %>
   </div><!--form group-->
   <div class="form-group">
     <%= label_tag :message %>
